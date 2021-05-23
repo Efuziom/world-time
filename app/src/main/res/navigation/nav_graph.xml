@@ -21,6 +21,20 @@
         android:label="@string/second_fragment_label"
         tools:layout="@layout/fragment_timezone_detail">
 
+        <argument
+            android:name="timezoneCountryName"
+            android:defaultValue="ERR"/>
+        <argument
+            android:name="timezoneCountryCode"
+            android:defaultValue="ERR"/>
+        <argument
+            android:name="timezoneName"
+            android:defaultValue="ERR"/>
+
+        <argument
+            android:name="timezoneTime"
+            android:defaultValue="ERR"/>
+
         <action
             android:id="@+id/navToTimeZoneList"
             app:destination="@id/TimeZoneListFragment" />

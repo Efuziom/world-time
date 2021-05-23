@@ -6,5 +6,5 @@ data class TimeZone(
     val zoneName: String,
     val countryCode: String,
     val countryName: String,
-    val timestamp: Int
+    val timestamp: Long
 );

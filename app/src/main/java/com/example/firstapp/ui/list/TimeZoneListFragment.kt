@@ -1,8 +1,8 @@
 package com.example.firstapp.ui.list
 
-import android.os.Build
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
-import android.text.format.Time
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -17,7 +17,6 @@ import com.example.firstapp.ui.api.TimeZoneAPISingleton
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.time.LocalDateTime
 import java.util.*
 
 /**
@@ -28,6 +27,7 @@ class TimeZoneListFragment : Fragment(){
     private lateinit var recyclerView: RecyclerView;
     private val adapter= TimeZoneAdapter(listOf(), ::onClickTimeZone);
     private val layoutManager= LinearLayoutManager(context);
+    private val sharedPref: SharedPreferences? = activity?.getSharedPreferences("world_clock_app", Context.MODE_PRIVATE);
 
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
@@ -47,22 +47,45 @@ class TimeZoneListFragment : Fragment(){
             this.adapter = this@TimeZoneListFragment.adapter;
         }
 
-         TimeZoneAPISingleton.timeZoneAPI.getTimeZoneList().enqueue(object: Callback<TimeZoneAPIResponse>{
-            override fun onResponse(call: Call<TimeZoneAPIResponse>, response: Response<TimeZoneAPIResponse>){
-                if(response.isSuccessful&& response.body()!=null){
-                    val timeZoneAPIResponse:TimeZoneAPIResponse= response.body()!!;
+        val listFromCache= getListFromCache()
+        if(listFromCache.isEmpty()) {
+            getListFromAPI()
+        }
+        else{
+            adapter.updateList(listFromCache);
+        }
+
+    }
+
+    private fun getListFromCache(): List<TimeZone>{
+        return emptyList();
+    }
+
+    private fun saveListToCache(){
+    }
+
+    private fun getListFromAPI(){
+        TimeZoneAPISingleton.timeZoneAPI.getTimeZoneList().enqueue(object : Callback<TimeZoneAPIResponse> {
+            override fun onResponse(call: Call<TimeZoneAPIResponse>, response: Response<TimeZoneAPIResponse>) {
+                if (response.isSuccessful && response.body() != null) {
+                    val timeZoneAPIResponse: TimeZoneAPIResponse = response.body()!!;
                     adapter.updateList(timeZoneAPIResponse.zones);
                 }
             }
 
-            override fun onFailure(call: Call<TimeZoneAPIResponse>, t: Throwable){
-                println("API Error: "+ t.message);
+            override fun onFailure(call: Call<TimeZoneAPIResponse>, t: Throwable) {
+                println("API Error: " + t.message);
                 //TODO("Not yet implemented")
             }
         });
     }
 
     private fun onClickTimeZone(timeZone:TimeZone){
-        findNavController().navigate(R.id.navToTimeZoneDetails);
+        findNavController().navigate(R.id.navToTimeZoneDetails, bundleOf(
+                "timezoneCountryName" to timeZone.countryName,
+                "timezoneCountryCode" to timeZone.countryCode,
+                "timezoneName" to timeZone.zoneName,
+                "timezoneTime" to timeZone.timestamp.toString()
+        ));
     }
 }

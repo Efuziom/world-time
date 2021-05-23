@@ -9,6 +9,8 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.navigation.fragment.findNavController
 import com.example.firstapp.R
+import com.example.firstapp.ui.list.TimeZone
+import com.example.firstapp.ui.utils.TimeUtil.fromEpochToString
 
 /**
  * A simple [Fragment] subclass as the second destination in the navigation.
@@ -34,5 +36,20 @@ class TimeZoneDetailFragment : Fragment() {
         view.findViewById<Button>(R.id.button_back_to_list).setOnClickListener {
             findNavController().navigate(R.id.navToTimeZoneList);
         }
+
+        val countryName:String? = arguments?.getString("timezoneCountryName");
+        val countryCode:String? = arguments?.getString("timezoneCountryCode");
+        val name:String? = arguments?.getString("timezoneName");
+        val time:Long? = arguments?.getString("timezoneTime")?.toLongOrNull();
+
+        this.textViewTimeZoneCountryName= view.findViewById(R.id.textview_timezone_countryname);
+        this.textViewTimeZoneCountryCode= view.findViewById(R.id.textview_timezone_countrycode);
+        this.textViewTimeZoneName= view.findViewById(R.id.textview_timezone_name);
+        this.textViewTimeZoneTime= view.findViewById(R.id.textview_timezone_time);
+
+        this.textViewTimeZoneCountryName.setText("country name: "+countryName);
+        this.textViewTimeZoneCountryCode.setText("ISO3 A2 code: "+countryCode);
+        this.textViewTimeZoneName.setText("TZ name: "+name);
+        this.textViewTimeZoneTime.setText(fromEpochToString(time));
     }
 }
