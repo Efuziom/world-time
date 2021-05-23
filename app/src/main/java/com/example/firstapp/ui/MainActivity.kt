@@ -10,8 +10,7 @@ import com.example.firstapp.R
 
 class MainActivity : AppCompatActivity() {
 
-    //in the vid: 32:00, https://youtu.be/AdLGvc1gK_c?t=1917 (list & API)
-    //next video https://www.youtube.com/watch?v=E9YCHZGm_-E&list=PLFXfdx9emMb7qN7NtU3oGqoErGIKqVZsH&index=3 (caching)
+    // TODO https://youtu.be/OsC_NopPzvs?list=PLFXfdx9emMb7qN7NtU3oGqoErGIKqVZsH
     //api token for time zone api: Q34EKL0CLLUJ
     //   |-> http://timezonedb.com/api
     //   '-> http://api.timezonedb.com/v2.1/list-time-zone?key=Q34EKL0CLLUJ&format=json

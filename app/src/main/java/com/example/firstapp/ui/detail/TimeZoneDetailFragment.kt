@@ -50,6 +50,6 @@ class TimeZoneDetailFragment : Fragment() {
         this.textViewTimeZoneCountryName.setText("country name: "+countryName);
         this.textViewTimeZoneCountryCode.setText("ISO3 A2 code: "+countryCode);
         this.textViewTimeZoneName.setText("TZ name: "+name);
-        this.textViewTimeZoneTime.setText(fromEpochToString(time));
+        this.textViewTimeZoneTime.setText(fromEpochToString(time)); //FIXME should send fromEpochToString(currTime( of etc0 ) + time) instead to have it mostly up to date
     }
 }
