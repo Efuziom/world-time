@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/TimeZoneListFragment">
+
+    <fragment
+        android:id="@+id/TimeZoneListFragment"
+        android:name="com.example.firstapp.ui.list.TimeZoneListFragment"
+        android:label="@string/first_fragment_label"
+        tools:layout="@layout/fragment_timeZone_list">
+
+        <action
+            android:id="@+id/navToTimeZoneDetails"
+            app:destination="@id/TimeZoneDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/TimeZoneDetailsFragment"
+        android:name="com.example.firstapp.ui.detail.TimeZoneDetailFragment"
+        android:label="@string/second_fragment_label"
+        tools:layout="@layout/fragment_timezone_detail">
+
+        <action
+            android:id="@+id/navToTimeZoneList"
+            app:destination="@id/TimeZoneListFragment" />
+    </fragment>
+</navigation>
