@@ -6,5 +6,5 @@ display those timezone and then allow the user to explore the different local ti
 It does caching trough the http client.
 
 
-![*image of the scrollable list*](https://github.com/Efuziom/world-time/blob/main/.doc/list_view.jpg?raw=true)
-![*image of the detailed view*](https://github.com/Efuziom/world-time/blob/main/.doc/detailed_view.jpg?raw=true)
+![*image of the scrollable list*](https://github.com/Efuziom/world-time/tree/main/.doc/list_view.jpg?raw=true)
+![*image of the detailed view*](https://github.com/Efuziom/world-time/tree/main/.doc/detailed_view.jpg?raw=true)
