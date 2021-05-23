@@ -9,7 +9,7 @@
         android:id="@+id/TimeZoneListFragment"
         android:name="com.example.firstapp.ui.list.TimeZoneListFragment"
         android:label="@string/first_fragment_label"
-        tools:layout="@layout/fragment_timeZone_list">
+        tools:layout="@layout/fragment_timezone_list">
 
         <action
             android:id="@+id/navToTimeZoneDetails"
