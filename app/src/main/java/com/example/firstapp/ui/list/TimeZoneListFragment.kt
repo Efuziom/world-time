@@ -27,7 +27,6 @@ class TimeZoneListFragment : Fragment(){
     private lateinit var recyclerView: RecyclerView;
     private val adapter= TimeZoneAdapter(listOf(), ::onClickTimeZone);
     private val layoutManager= LinearLayoutManager(context);
-    private val sharedPref: SharedPreferences? = activity?.getSharedPreferences("world_clock_app", Context.MODE_PRIVATE);
 
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
@@ -47,21 +46,7 @@ class TimeZoneListFragment : Fragment(){
             this.adapter = this@TimeZoneListFragment.adapter;
         }
 
-        val listFromCache= getListFromCache()
-        if(listFromCache.isEmpty()) {
-            getListFromAPI()
-        }
-        else{
-            adapter.updateList(listFromCache);
-        }
-
-    }
-
-    private fun getListFromCache(): List<TimeZone>{
-        return emptyList();
-    }
-
-    private fun saveListToCache(){
+        getListFromAPI()
     }
 
     private fun getListFromAPI(){
